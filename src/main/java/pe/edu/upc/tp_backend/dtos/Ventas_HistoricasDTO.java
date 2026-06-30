@@ -8,6 +8,7 @@ public class Ventas_HistoricasDTO {
     private String categoria;
     private int    cantidad_vendida;
     private float  precio_unitario;
+    private float  precio_final_venta; /*agregado*/
     private float  costo_unitario;
     private String canal_venta;
     private String tipo_cliente;
@@ -183,6 +184,15 @@ public class Ventas_HistoricasDTO {
 
     public void setId_usuario(int id_usuario) {
         this.id_usuario = id_usuario;
+    }
+
+    /*agregado*/
+    public float getPrecio_final_venta() {
+        return precio_final_venta;
+    }
+
+    public void setPrecio_final_venta(float precio_final_venta) {
+        this.precio_final_venta = precio_final_venta;
     }
 }
 

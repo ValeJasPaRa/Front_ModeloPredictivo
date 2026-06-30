@@ -45,6 +45,10 @@ public class Ventas_Historicas {
     @Column(name = "tiene_dscto", nullable = false)
     private Boolean tiene_dscto;
 
+    /*agregado*/
+    @Column(name = "precio_final_venta")
+    private Float precio_final_venta;
+
     @Column(name = "porcentaje_dscto", nullable = false)
     private float porcentaje_dscto;
 
@@ -285,5 +289,14 @@ public class Ventas_Historicas {
 
     public void setId_usuario(Usuario id_usuario) {
         this.id_usuario = id_usuario;
+    }
+
+    /*agregado*/
+    public float getPrecio_final_venta() {
+        return precio_final_venta;
+    }
+
+    public void setPrecio_final_venta(float precio_final_venta) {
+        this.precio_final_venta = precio_final_venta;
     }
 }

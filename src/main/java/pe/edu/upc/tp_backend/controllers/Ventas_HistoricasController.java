@@ -149,18 +149,24 @@ public class Ventas_HistoricasController {
                 v.setCategoria(cols[2].trim());
                 v.setCantidad_vendida(
                         Integer.parseInt(cols[3].trim()));
-                v.setPrecio_unitario(
-                        Float.parseFloat(cols[4].trim()));
+                float precioUnitario = Float.parseFloat(cols[4].trim());
+                boolean tieneDscto    = Boolean.parseBoolean(cols[9].trim());
+                float porcentajeDscto = Float.parseFloat(cols[10].trim());
+
+                float precioFinal = (tieneDscto && porcentajeDscto > 0)
+                        ? precioUnitario * (1 - porcentajeDscto / 100f)
+                        : precioUnitario;
+
+                v.setPrecio_unitario(precioUnitario);
+                v.setPrecio_final_venta(precioFinal);
                 v.setCosto_unitario(
                         Float.parseFloat(cols[5].trim()));
                 v.setCanal_venta(cols[6].trim());
                 v.setTipo_cliente(cols[7].trim());
                 v.setRegion_venta(cols[8].trim());
                 v.setModalidad_pago("Efectivo"); // default en CSV
-                v.setTiene_dscto(
-                        Boolean.parseBoolean(cols[9].trim()));
-                v.setPorcentaje_dscto(
-                        Float.parseFloat(cols[10].trim()));
+                v.setTiene_dscto(tieneDscto);
+                v.setPorcentaje_dscto(porcentajeDscto);
                 v.setEs_campain(
                         Boolean.parseBoolean(cols[11].trim()));
                 v.setTipo_campain(cols[12].trim());

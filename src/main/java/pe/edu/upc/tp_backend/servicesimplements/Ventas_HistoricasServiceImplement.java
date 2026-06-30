@@ -38,6 +38,7 @@ public class Ventas_HistoricasServiceImplement  implements IIVentas_HistoricasSe
         v.setCategoria(dto.getCategoria());
         v.setCantidad_vendida(dto.getCantidad_vendida());
         v.setPrecio_unitario(dto.getPrecio_unitario());
+        v.setPrecio_final_venta(dto.getPrecio_final_venta());
         v.setCosto_unitario(dto.getCosto_unitario());
         v.setCanal_venta(dto.getCanal_venta());
         v.setTipo_cliente(dto.getTipo_cliente());

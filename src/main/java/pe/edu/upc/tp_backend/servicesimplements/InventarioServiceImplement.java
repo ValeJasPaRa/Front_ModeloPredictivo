@@ -48,6 +48,7 @@ public class InventarioServiceImplement implements IInventarioService {
         existing.setStock_minimo(inv.getStock_minimo());
         existing.setPrecio_unitario(inv.getPrecio_unitario());
         existing.setUnidad_medida(inv.getUnidad_medida());
+        existing.setCosto_unitario(inv.getCosto_unitario());  // ← esta línea faltaba
         return inventarioRepo.save(existing);
     }
 
