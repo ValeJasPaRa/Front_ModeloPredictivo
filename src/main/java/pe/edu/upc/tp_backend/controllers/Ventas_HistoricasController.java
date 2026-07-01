@@ -18,6 +18,7 @@ import pe.edu.upc.tp_backend.servicesinterfaces.IIVentas_HistoricasService;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -144,7 +145,18 @@ public class Ventas_HistoricasController {
                 // [9] tiene_dscto  [10] porcentaje_dscto
                 // [11] es_campain  [12] tipo_campain
                 // [13] stock_inicial_periodo
-                v.setFecha(LocalDate.parse(cols[0].trim()));
+                //v.setFecha(LocalDate.parse(cols[0].trim()));
+                String fechaStr = cols[0].trim();
+                LocalDate fechaParsed;
+                if (fechaStr.contains("/")) {
+                    // Formato DD/MM/YYYY (típico de Excel en español)
+                    DateTimeFormatter formatoDDMMYYYY = DateTimeFormatter.ofPattern("d/M/yyyy");
+                    fechaParsed = LocalDate.parse(fechaStr, formatoDDMMYYYY);
+                } else {
+                    // Formato ISO YYYY-MM-DD (estándar del sistema)
+                    fechaParsed = LocalDate.parse(fechaStr);
+                }
+                v.setFecha(fechaParsed);
                 v.setProducto(cols[1].trim());
                 v.setCategoria(cols[2].trim());
                 v.setCantidad_vendida(
